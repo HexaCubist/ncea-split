@@ -430,7 +430,7 @@ def getquestions(qphtml, qindent="74"):
             print("[INFO] Beginning to proccess " + doc)
             logging.info("Beginning to proccess " + doc)
             # Calculate the start and end locations for the questions, as we will need this when we come to generate the images.
-            qlist = re.findall("page(\d+)-div|top:(\d+).+<b>QUESTION|top:(\d+).+left:64px.+\(\w\)", questions)
+            qlist = re.findall("page(\d+)-div|top:(\d+).+<b>QUESTION|top:(\d+).+left:6\dpx.+\(\w\)", questions)
             logging.info(qlist)
             questionCoords = []
             pagenum = -1
