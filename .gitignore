@@ -105,3 +105,6 @@ ENV/
 
 # ignore pdf files used for testing
 *.pdf
+
+# ignore import folder in web app
+app/import/
