@@ -145,7 +145,7 @@ if foldertype == 1 or foldertype == 3:
                     print(file)
                     print(path.basename)
                     filename = path.basename(file)
-                    export_paths[ansmatch[0][0] + "-" + ansmatch[0][1] + "-q" + "/" + filename] = newfoldername + "/" + filename
+                    export_paths.append([ansmatch[0][0] + "-" + ansmatch[0][1] + "-q" + "/" + filename, newfoldername + "/" + filename])
         finallocation = path.relpath(saveloc + "/" + newfoldername)
         copytree(folder, finallocation)
 
@@ -168,7 +168,7 @@ mcstripper.cleanup()
 
 print("[SUCCESS] Clean up finished. Storying js of question-answer matches")
 with open(path.relpath(saveloc + "/" + 'export.js'), 'w') as outfile:
-    outfile.write("export = ")
+    outfile.write("var examdata = ")
     json.dump(export_paths, outfile)
 
 
