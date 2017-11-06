@@ -14,25 +14,26 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>Enter your exam code:</h1>
+			<h1>Exam generator</h1>
 			<div class="form-group">
+				<label for="randgen">Exam Code</label>
 				<div class="input-group">
 						<input type="text" class="form-control" name="randgen" id="randgen">
 					<span class="input-group-btn">
 						<button id="generate" class="btn btn-secondary">Generate</button>
 					</span>
 				</div>
-				<small class="form-text text-muted">If you're not sure what this is, make one up and remember it</small>
+				<small class="form-text text-muted">If you're not sure what this is, make one up and remember it - the same code produces the same exam</small>
 			</div>
 			<div class="form-group">
 				<label for="numquestions">Number of Questions</label>
 				<input type="number" class="form-control" id="numquestions" min="1" max="10" value="3">
 			</div>
+			<p>This website will give you a random exam paper. Enter in some sort of text or number in the exam code box above, and then how many questions you want to be gven. There will be text boxes on the side (which are only for your notes and do not save), and you will be able to click on the image of each question to view the answer. Try and finish the entire paper and then come back to see what you don't know!</p>
 			<div class="exam">
 				<!-- Questions & Answers will appear here -->
 			</div>
 			<div class="footer">
-				<button class="btn btn-success" id="showans">Show Answers</button>
 			</div>
 		</div>
 
@@ -83,6 +84,7 @@
 					random_fetch.push(question);
 				}
 				Math.seedrandom();
+				console.log(random_fetch);
 				return random_fetch;
 			}
 
@@ -92,6 +94,8 @@
 				var randimgs = fetch_random(examdata_managed, randseed, $("#numquestions").val());
 				for (var i = 0; i < randimgs.length; i++) {
 					$(".exam").append("<h3>Question " + (parseInt(i)+1).toString() + "</h3>")
+					// First, we need to sort the questions
+					randimgs[i].sort((a, b) => parseInt(a[0].split("s")[1].split(".")[0]) - parseInt(b[0].split("s")[1].split(".")[0]));
 					for (var x = 0; x < randimgs[i].length; x++) {
 						html_content = $("<div class='question'></div>");
 						html_content.append("<img class='qst' src='import/" + randimgs[i][x][0] + "'>");
@@ -101,11 +105,11 @@
 					}
 				}
 				autosize($('textarea'));
+				$(".qst, .ans").click(function() {
+					$(this).parent().children(".ans").fadeToggle( "slow" );
+				});
 			})
 
-			$("#showans").click(function() {
-				$(".ans").fadeToggle( "slow" );
-			});
 		</script>
 	</body>
 </html>
