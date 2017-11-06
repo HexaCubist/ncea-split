@@ -120,7 +120,7 @@ print("[INFO] Generating finished, saving files")
 time.sleep(1)
 
 # File info
-export_paths = {}
+export_paths = []
 
 # fix up any whitespace on the bottom
 if foldertype == 1 or foldertype == 3:
