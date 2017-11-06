@@ -1,25 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Exam time!</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<title>Exam time!</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  </head>
-  <body>
-  	<div class="container">
-	    <h1>Enter your exam code:</h1>
-	    <p>If you're not sure what this is, make one up and remember it</p>
-	    <input type="text" name="randgen" id="randgen">
-    </div>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="custom.css">
+	</head>
+	<body>
+		<div class="container">
+			<h1>Enter your exam code:</h1>
+			<div class="form-group">
+				<div class="input-group">
+						<input type="text" class="form-control" name="randgen" id="randgen">
+					<span class="input-group-btn">
+						<button id="generate" class="btn btn-secondary">Generate</button>
+					</span>
+				</div>
+				<small class="form-text text-muted">If you're not sure what this is, make one up and remember it</small>
+			</div>
+			<div class="exam">
+				<!-- Questions & Answers will appear here -->
+			</div>
+		</div>
+
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+		<!-- So that we can seed a random number -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js"></script>
+
+		<!-- So that the textbox autoresizes -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.0/autosize.min.js"></script>
+		
+		<!-- Load export.js from import folder that will give us filenames to use -->
+		<script src="import/export.js"></script>
+		<!-- Sort export.js -->
+		<script type="text/javascript">
+			var examdata_managed = {};
+			for (var i = 0; i < examdata.length; i++) {
+				docname = examdata[i][0].split("-q/")[0];
+				questionnum = parseInt(examdata[i][0].split("_q")[1].split("s")[0]);
+				if(!examdata_managed.hasOwnProperty(docname)) {
+					examdata_managed[docname] = [];
+				}
+				if(examdata_managed[docname].length < questionnum) {
+					examdata_managed[docname].push([]);
+				}
+				examdata_managed[docname][questionnum-1].push(examdata[i]);
+			}
+		</script>
+
+		<!-- Script Begins -->
+		<script type="text/javascript">
+			// Function to fetch a random question number from examdata_manged
+			function fetch_random(argdata, seed, number) {
+				argdata_arr = Object.values(argdata)
+				Math.seedrandom(seed);
+				random_fetch = [];
+				for (var i = 0; i < number; i++) {
+					// Choose a random paper
+					console.log(Math.floor(Math.random() * argdata_arr.length));
+					console.log(argdata_arr)
+					var paper = argdata_arr[Math.floor(Math.random() * argdata_arr.length)];
+					// Choose a random question from the paper
+					var question = paper[Math.floor(Math.random() * paper.length)];
+					// append to random_fetch
+					random_fetch.push(question);
+				}
+				Math.seedrandom();
+				return random_fetch;
+			}
+
+			$("#generate").click(function() {
+				var randseed = $("#randgen").val();
+				var randimgs = fetch_random(examdata_managed, randseed, 2);
+				for (var i = 0; i < randimgs.length; i++) {
+					$(".exam").append("<h3>Question " + (parseInt(i)+1).toString() + "</h3>")
+					for (var x = 0; x < randimgs[i].length; x++) {
+						html_content = $("<div class='question'></div>");
+						html_content.append("<img class='qst' src='import/" + randimgs[i][x][0] + "'>");
+						html_content.append("<img class='ans' src='import/" + randimgs[i][x][1] + "'>");
+						html_content.append("<textarea class='form-control' rows='3'></textarea>");
+						$(".exam").append(html_content);
+					}
+				}
+				autosize($('textarea'));
+			})
+		</script>
+	</body>
 </html>

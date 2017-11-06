@@ -1,0 +1,24 @@
+.exam img.qst {
+	width: 700px;
+	max-width: 100%;
+	margin-top: -4px;
+}
+
+.exam img.ans {
+	width: 700px;
+	left: 0px;
+	display: none;
+	position: absolute;
+}
+
+.exam textarea {
+	position: absolute;
+	top: 0;
+	width: 500px;
+	left: 650px;
+	max-height: 300px;
+}
+
+.exam .question {
+	position: relative;
+}
