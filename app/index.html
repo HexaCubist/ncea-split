@@ -24,6 +24,10 @@
 				</div>
 				<small class="form-text text-muted">If you're not sure what this is, make one up and remember it</small>
 			</div>
+			<div class="form-group">
+				<label for="numquestions">Number of Questions</label>
+				<input type="number" class="form-control" id="numquestions" min="1" max="10" value="3">
+			</div>
 			<div class="exam">
 				<!-- Questions & Answers will appear here -->
 			</div>
@@ -83,8 +87,9 @@
 			}
 
 			$("#generate").click(function() {
+				$(".exam").html('');
 				var randseed = $("#randgen").val();
-				var randimgs = fetch_random(examdata_managed, randseed, 2);
+				var randimgs = fetch_random(examdata_managed, randseed, $("#numquestions").val());
 				for (var i = 0; i < randimgs.length; i++) {
 					$(".exam").append("<h3>Question " + (parseInt(i)+1).toString() + "</h3>")
 					for (var x = 0; x < randimgs[i].length; x++) {
