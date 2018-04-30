@@ -193,227 +193,52 @@ def getquestions(qphtml, qindent="74"):
     ]
     '''
     doctaglist = {
-        "Classification": {"keywords": [
-            "Kingdom",
-            "Phylum",
-            "Family",
-            "year 9s",
-            "Lucy",
-            "12v",
-            "Towey",
-            "Dicot "
+        "Classification of Life": {"keywords": [
+            "living organisms",
+            "excretion",
+            "respiration",
+            "characteristic",
+            "species",
+            "identify the",
+            "athropod",
         ]},
-        "Organisation of the organism": {"keywords": [
-            "Stack",
-            "Tree",
-            "Membrane",
-            "compartmentalisation",
-            "nucleus",
-            "Vacuole",
-            "cell membrane",
-            "Root hair cells",
-            "Palisade",
-            "organ system"
+        "Cells": {"keywords": [
+            "cell"
         ]},
-        "Movement in and out of the Cell": {"keywords": [
-            "Osmosis",
-            "concentration gradient ",
-            "Channel proteins",
-            "Active Transport",
-            "Osmotic Potential",
-            "Diffusion",
-            "magnification",
-            "red blood cells"
-        ]},
-        "Biological Molecules ": {"keywords": [
-            "proteins",
-            "Enzymes",
-            "Carbohydrates",
-            "Glycogen",
-            "Fats",
-            "Lipids",
-            "dick"
-        ]},
+        "Movement in and out of Cells": {"keywords": []},
+        "Biological molecules": {"keywords": []},
         "Enzymes": {"keywords": [
-            "Amylase",
-            "Protease",
-            "Hormones",
-            "Digestive",
-            "Defensive",
-            "lipase"
+            "enzyme"
         ]},
-        "Plant nutrition": {"keywords": [
-            "Starch",
-            "Photosynthesis",
-            "Magensium",
-            "Nitrogen",
-            "nitrogen Cycle",
-            "Carbon Cycle",
-            "Carbon Dioxide"
-        ]},
-        "Human Nutrition": {"keywords": [
-            "Digestion",
-            "Stomach",
-            "Intestines",
-            "Vitamin C",
-            "Vitamin D",
-            "Deamination",
-            "Glucose"
-        ]},
+        "Plant nutrition": {"keywords": []},
+        "Human nutrition": {"keywords": []},
         "Transport in plants": {"keywords": [
-            "Phloem",
-            "Xylem",
-            "sucrose",
-            "Monocot",
-            "Dicot"
+            "osmosis",
+            "diffusion",
+            "active transport",
+            "translocation",
+            "transpiration"
         ]},
         "Transport in animals": {"keywords": [
-            "Blood",
-            "vespa",
-            "Haemoglobin",
-            "mr towey"
+            "osmosis",
+            "diffusion",
+            "active transport",
+            "translocation",
+            "transpiration"
         ]},
-        "Disease and immunity": {"keywords": [
-            "ebola",
-            "Immune system",
-            "Antibodies",
-            "sickle cell anaemia",
-            "Genetic",
-            "Contagious",
-            "Bacterial",
-            "Viral",
-            "Fungal"
-        ]},
-        "Gas exchange in Humans": {"keywords": [
-            "Lungs",
-            "Alveoli",
-            "Bronchi",
-            "bronchus",
-            "Air  sacs",
-            "Oxygen"
-        ]},
-        "Respiration": {"keywords": [
-            "Mitochondria",
-            "Breathing",
-            "Glucose",
-
-        ]},
-        "Excretion in humans": {"keywords": [
-            "Kidneys",
-            "carbon dioxide",
-            "Liver",
-            "Urea",
-            "Loop Of Henle",
-            "medulla",
-            "dialysis",
-            "Transplant "
-        ]},
-        "Coordination and response": {"keywords": [
-            "Nervous system",
-            "Twitchiness",
-            "Falling Over",
-            "relay"
-        ]},
-        "Drugs": {"keywords": [
-            "Cocaine",
-            "depression",
-            "Stimulents ",
-            "Depressents",
-            "Alcohol",
-            "methylated spirits"
-        ]},
-        "Reproduction": {"keywords": [
-            "sperm",
-            "vagina",
-            "orgasm",
-            "yes!!!!",
-            "ZYGOTE",
-            "*orgasmic scream*",
-            "Placenta",
-            "STOP DELETING PENIS ITS PART OF REPRODUCTION"
-        ]},
-        "Inheritance": {"keywords": [
-            "dick",
-            "Allele",
-            "Gene",
-            "mr towey",
-            "mr towey"
-        ]},
-        "Variation and Selection": {"keywords": [
-            "woman with beards",
-            "survival of",
-            "Mutation",
-            "Natural selection",
-            "evolution",
-            "mr towey",
-            "Darwin Awards",
-            "<--YES"
-        ]},
-        "Organisms and their environments": {"keywords": [
-            "mr towey",
-            "mr toweys baby",
-            "mr toweys wife",
-            "mr toweys house"
-        ]},
-        "Biotechnology and Genetic engineering": {"keywords": [
-        ]},
-        "Human Influences on ecosystems": {"keywords": [
-            "death",
-            "destruction",
-            "global warming",
-            "Ecosystem Collapse",
-            "deforestation",
-            "Extinction",
-            "ISIS"
-        ]}
+        "Diseases and immunity": {"keywords": []},
+        "Gas exchange in humans": {"keywords": []},
+        "Respiration": {"keywords": []},
+        "Excretion in humans": {"keywords": []},
+        "Co-ordination and response": {"keywords": []},
+        "Drugs": {"keywords": []},
+        "Reproduction": {"keywords": []},
+        "Inheritance": {"keywords": []},
+        "Variation and selection": {"keywords": []},
+        "Organisms and their environment": {"keywords": []},
+        "Biotechnology and genetic engineering": {"keywords": []},
+        "Human influences on ecosystems": {"keywords": []},
     }
-    # doctaglist = {
-    #     "Classification of Life": {"keywords": [
-    #         "living organisms",
-    #         "excretion",
-    #         "respiration",
-    #         "characteristic",
-    #         "species",
-    #         "identify the",
-    #         "athropod",
-    #     ]},
-    #     "Cells": {"keywords": [
-    #         "cell"
-    #     ]},
-    #     "Movement in and out of Cells": {"keywords": []},
-    #     "Biological molecules": {"keywords": []},
-    #     "Enzymes": {"keywords": [
-    #         "enzyme"
-    #     ]},
-    #     "Plant nutrition": {"keywords": []},
-    #     "Human nutrition": {"keywords": []},
-    #     "Transport in plants": {"keywords": [
-    #         "osmosis",
-    #         "diffusion",
-    #         "active transport",
-    #         "translocation",
-    #         "transpiration"
-    #     ]},
-    #     "Transport in animals": {"keywords": [
-    #         "osmosis",
-    #         "diffusion",
-    #         "active transport",
-    #         "translocation",
-    #         "transpiration"
-    #     ]},
-    #     "Diseases and immunity": {"keywords": []},
-    #     "Gas exchange in humans": {"keywords": []},
-    #     "Respiration": {"keywords": []},
-    #     "Excretion in humans": {"keywords": []},
-    #     "Co-ordination and response": {"keywords": []},
-    #     "Drugs": {"keywords": []},
-    #     "Reproduction": {"keywords": []},
-    #     "Inheritance": {"keywords": []},
-    #     "Variation and selection": {"keywords": []},
-    #     "Organisms and their environment": {"keywords": []},
-    #     "Biotechnology and genetic engineering": {"keywords": []},
-    #     "Human influences on ecosystems": {"keywords": []},
-    # }
     currentdoc = 0
     pagenum = -1
     questionnum = -1
